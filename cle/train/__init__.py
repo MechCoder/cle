@@ -1,7 +1,12 @@
 import ipdb
 import logging
+import sys
 import theano.tensor as T
 import time
+if sys.version_info[0] == 3:
+    izip = zip
+else:
+    from itertools import izip
 
 from cle.cle.graph import TheanoMixin
 from cle.cle.models import Model
@@ -9,8 +14,6 @@ from cle.cle.utils import PickleMixin, tolist
 
 from collections import defaultdict
 from theano.compat.python2x import OrderedDict
-
-from itertools import izip
 
 
 logging.basicConfig(level=logging.INFO, format='%(message)s')
@@ -53,7 +56,7 @@ class Training(PickleMixin, TheanoMixin):
 
         t0 = time.time()
         self.cost_fn = self.build_training_graph()
-        print "Elapsed compilation time: %f" % (time.time() - t0)
+        print("Elapsed compilation time: %f" % (time.time() - t0))
         if self.debug_print:
             from theano.printing import debugprint
             debugprint(self.cost_fn)

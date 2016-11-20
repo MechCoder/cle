@@ -1,5 +1,5 @@
 import ipdb
-import cPickle
+from six.moves import cPickle
 import logging
 import numpy as np
 import os

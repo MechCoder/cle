@@ -1,5 +1,6 @@
 import ipdb
 import numpy as np
+import sys
 import theano
 import theano.tensor as T
 
@@ -7,7 +8,10 @@ from cle.cle.layers import StemCell, InitCell
 from cle.cle.utils import tolist
 from cle.cle.utils.op import add_noise
 
-from itertools import izip
+if sys.version_info[0] == 3:
+    izip = zip
+else:
+    from itertools import izip
 
 from theano.compat.python2x import OrderedDict
 
